@@ -36,5 +36,4 @@ fn main() {
 
     println!("Part 1: {}", fully_contain.len());
     println!("Part 2: {}", any_overlap.len());
-    // dbg!(fully_contain);
 }
