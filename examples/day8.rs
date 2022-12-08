@@ -100,12 +100,6 @@ fn main() {
 
             let score = before * after * under * over;
 
-            if i == 3 && j == 2 {
-                println!("{}", score);
-                println!("{:?}", (over, before, under, after));
-                println!("");
-            }
-
             if score > best_spot {
                 best_spot = score;
             }
