@@ -1,5 +1,7 @@
 use std::collections::{HashMap, VecDeque};
 
+use rayon::prelude::{IntoParallelRefIterator, ParallelIterator};
+
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 struct Point {
     x: i32,
@@ -49,14 +51,20 @@ fn main() {
 
     // Part 2
 
-    let mut best_start = i32::MAX;
-    for i in 0..height_map.len() {
-        if let Some(data) = find_path(&height_map, &Point { x: 0, y: i as i32 }, &goal) {
-            if data.len() as i32 - 1 < best_start {
-                best_start = data.len() as i32 - 1;
+    let best_start = vec![0; height_map.len()]
+        .iter()
+        .enumerate()
+        .map(|(i, _)| i as i32)
+        .collect::<Vec<i32>>()
+        .par_iter()
+        .map(|v| {
+            if let Some(data) = find_path(&height_map, &Point { x: 0, y: *v }, &goal) {
+                return data.len() as i32 - 1;
             }
-        }
-    }
+            return i32::MAX;
+        })
+        .min()
+        .unwrap();
 
     println!("Part 2: {}", best_start);
 }
