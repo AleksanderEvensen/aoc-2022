@@ -9,3 +9,5 @@ edition = "2021"
 itertools = "0.10.5"
 parse-display = "0.7.0"
 rayon = "1.6.1"
+serde = { version = "1.0.150", features = ["derive"] }
+serde_json = "1.0.89"
