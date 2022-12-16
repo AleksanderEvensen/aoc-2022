@@ -1,6 +1,5 @@
-use std::collections::HashMap;
-
 use parse_display::{Display, FromStr};
+use std::collections::HashMap;
 
 #[derive(Display, FromStr, Debug, Clone, PartialEq, Eq, Hash)]
 #[display("{x},{y}")]
